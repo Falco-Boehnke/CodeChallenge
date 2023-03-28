@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+</head>
+<body>
+    
+
+
+    <input type="checkbox" class="checkbox-input" value="First">1</input>
+    <input type="checkbox" class="checkbox-input" value="Second">2</input>
+    <input type="checkbox" class="checkbox-input" value="Third">3</input>
+    <input type="checkbox" class="checkbox-input" value="Fourth">4</input>
+    <input type="checkbox" class="checkbox-input" value="Fifth">5</input>
+    <input type="checkbox" class="checkbox-input" value="Sixth">6</input>
+
+    <input type="checkbox" class="checkbox-input__select-all">Alle auswählen</input> 
+
+    <h1>Deine Auswahl</h1>
+    <p id="paragraph__checkbox-output">Keine Auswahl</p>
+
+    <script>
+        const checkboxes = Array.from(document.getElementsByClassName("checkbox-input"));
+        
+        const selectAllCheckboxList = Array.from(document.getElementsByClassName("checkbox-input__select-all"));
+
+        function toggleCheckbox (checkboxToToggle){
+            const isChecked = checkboxToToggle.checked;
+            checkboxToToggle.checked = !isChecked
+        }
+
+        function onSelectAll (event) {
+            console.log("Checkers");
+            if(event.currentTarget?.checked){
+                checkboxes.forEach(toggleCheckbox);
+            }
+            else if(!event.currentTarget?.checked){
+                checkboxes.forEach(toggleCheckbox)
+            }
+        }
+
+
+        selectAllCheckboxList[0].addEventListener('change', onSelectAll)
+
+
+    </script>
+</body>
+
+</html>
