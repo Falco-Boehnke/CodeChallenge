@@ -34,5 +34,12 @@ Create a quick tiny html file with necessary checkboxes and javascript to toggle
 - Select-All unclear goal: Deselect always if 'most' checkboxes are checked? or depend on previous state? or always be Select-All when any checkbox isn't selected?
 - Script be messy
 
+### Refine
+- ~~Only works if all checkboxes have the same checked state, otherwise it's just switching each checkboxes stage~~
+- ~~Selection Values not shown on screen~~
+- ~~Select-All checkbox is still unchecked if all other checkboes are checked manually -> double click necessary~~
+- ~~Select-All checkbox doesn't switch text depending on state~~
+- Script still seems a bit messy
+- Select-All unclear goal: Deselect always if 'most' checkboxes are checked? or depend on previous state? or always be Select-All when any checkbox isn't selected?
 
 
