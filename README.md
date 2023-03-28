@@ -42,4 +42,10 @@ Create a quick tiny html file with necessary checkboxes and javascript to toggle
 - Script still seems a bit messy
 - Select-All unclear goal: Deselect always if 'most' checkboxes are checked? or depend on previous state? or always be Select-All when any checkbox isn't selected?
 
+### Make it a webpage per instructions
+
+Create a simple webpage with Header, the instructions as well as the result at the end of it.
+
+#### Design
+Mostly just trial and error, only thing I wanted was a blue touch because of the header image I selected.
 
