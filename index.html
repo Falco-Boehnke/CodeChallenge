@@ -1,50 +1,85 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <title>title</title>
-</head>
-<body>
-    
+    <title>CodingChallenge</title>
+  </head>
+  <body>
+    <main>
+      <label>
+        <input type="checkbox" class="checkbox-input" value="First" />1
+      </label>
+      <label>
+        <input type="checkbox" class="checkbox-input" value="Second" />2
+      </label>
+      <label>
+        <input type="checkbox" class="checkbox-input" value="Third" />3
+      </label>
 
+      <input
+        id="select-all__input"
+        type="checkbox"
+        class="checkbox-input__select-all"
+      />
+      <label for="select-all__input" id="select-all__input-label"
+        >Alle auswählen</label
+      >
 
-    <input type="checkbox" class="checkbox-input" value="First">1</input>
-    <input type="checkbox" class="checkbox-input" value="Second">2</input>
-    <input type="checkbox" class="checkbox-input" value="Third">3</input>
-    <input type="checkbox" class="checkbox-input" value="Fourth">4</input>
-    <input type="checkbox" class="checkbox-input" value="Fifth">5</input>
-    <input type="checkbox" class="checkbox-input" value="Sixth">6</input>
-
-    <input type="checkbox" class="checkbox-input__select-all">Alle auswählen</input> 
-
-    <h1>Deine Auswahl</h1>
-    <p id="paragraph__checkbox-output">Keine Auswahl</p>
-
+      <h1>Deine Auswahl</h1>
+      <p id="paragraph__checkbox-output">Keine Auswahl</p>
+    </main>
     <script>
-        const checkboxes = Array.from(document.getElementsByClassName("checkbox-input"));
-        
-        const selectAllCheckboxList = Array.from(document.getElementsByClassName("checkbox-input__select-all"));
+  
 
-        function toggleCheckbox (checkboxToToggle){
-            const isChecked = checkboxToToggle.checked;
-            checkboxToToggle.checked = !isChecked
-        }
+      const checkboxOutput = document.getElementById(
+        "paragraph__checkbox-output"
+      );
+      const selections = new Map();
 
-        function onSelectAll (event) {
-            console.log("Checkers");
-            if(event.currentTarget?.checked){
-                checkboxes.forEach(toggleCheckbox);
-            }
-            else if(!event.currentTarget?.checked){
-                checkboxes.forEach(toggleCheckbox)
-            }
-        }
+     
 
+      const checkboxes = Array.from(
+        document.getElementsByClassName("checkbox-input")
+      );
+      checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", toggleSelectionEntry);
+      });
 
-        selectAllCheckboxList[0].addEventListener('change', onSelectAll)
+      function toggleSelectionEntry(event) {
+        const checkValue = event.currentTarget.value;
+        selections.has(checkValue)
+          ? selections.delete(checkValue)
+          : selections.set(checkValue, checkValue);
 
+        printSelectionEntries();
+      }
 
+      function printSelectionEntries() {
+        const valuesString = Array.from(selections.values()).sort().join(", ");
+        checkboxOutput.innerHTML = valuesString? valuesString : "Keine Auswahl";
+      }
+
+      function onSelectAll(event) {
+        const isSelectAllChecked = event.currentTarget.checked;
+        checkboxes.forEach((checkbox) => {
+          const isChecked = checkbox.checked;
+          if (isSelectAllChecked !== isChecked) checkbox.click();
+        });
+      }
+
+      const [selectAllCheckbox] = Array.from(
+        document.getElementsByClassName("checkbox-input__select-all")
+      );
+      const selectAllLabel = document.getElementById("select-all__input-label");
+      function updateSelectAllText(event) {
+        const selectAllLabelText = event.currentTarget.checked
+          ? "Alle abwählen"
+          : "Alle auswählen";
+        selectAllLabel.innerText = selectAllLabelText;
+      }
+
+      selectAllCheckbox.addEventListener("change", onSelectAll);
+      selectAllCheckbox.addEventListener("change", updateSelectAllText);
     </script>
-</body>
-
+  </body>
 </html>
