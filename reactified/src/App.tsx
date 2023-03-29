@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import { CheckboxesWithSelectAll } from "./components/checkboxes/CheckboxesWithSelectAll";
 
 function App() {
   return (
@@ -36,7 +36,15 @@ function App() {
         </ul>
       </section>
 
-      <section className="checkbox-solution"></section>
+      <section className="checkbox-solution">
+        <CheckboxesWithSelectAll
+          checkboxes={[
+            { label: "First", value: "first" },
+            { label: "Second", value: "second" },
+            { label: "Third", value: "third" },
+          ]}
+        />
+      </section>
     </main>
   );
 }
